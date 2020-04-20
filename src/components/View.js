@@ -22,7 +22,6 @@ const View = ({ result, loading }) => {
               key={item.trackId}
             >
               <Card
-                key={item.trackId}
                 style={{ width: 300, marginTop: 16 }}
                 actions={[
                   <a target="_blank" href={`${item.collectionViewUrl}`}>

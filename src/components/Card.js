@@ -1,9 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { handleSearchAPI } from "../reducer";
-import axios from "axios";
 import {
-  notification,
   Row,
   Col,
   Card,
@@ -11,27 +7,34 @@ import {
   Typography,
   Button,
   Tooltip,
-  Divider
+  Divider,
+  Select
 } from "antd";
-
-import { Select } from "antd";
 import { SearchOutlined, FilterOutlined } from "@ant-design/icons";
+
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { handleSearchAPI } from "../reducer";
+
 import View from "./View";
 
 const { Option } = Select;
-
 const { Text, Title } = Typography;
 
 const CardView = () => {
   const state = useSelector(state => state);
   const dispatch = useDispatch();
+
   const [search, setSearch] = useState("");
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
+    //Loading animation just for the user experience
     setLoading(true);
     dispatch(handleSearchAPI(search, limit));
+
+    //setTimeout just to show the loading animation
     setTimeout(() => {
       setLoading(false);
     }, 2000);
